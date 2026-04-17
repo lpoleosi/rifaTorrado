@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gran Rifa Gaban Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -11,185 +14,732 @@
       padding: 0;
     }
 
+    :root {
+      --azul: #1a73e8;
+      --azul-oscuro: #1251aa;
+      --dorado: #f5a623;
+      --dorado-oscuro: #d4861a;
+      --rojo: #e53935;
+      --verde: #2e7d32;
+      --gris-claro: #f4f6f9;
+      --blanco: #ffffff;
+      --texto: #333333;
+      --texto-suave: #666666;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #f4f6f9;
-      color: #333;
+      font-family: 'Open Sans', Arial, sans-serif;
+      background-color: var(--gris-claro);
+      color: var(--texto);
       line-height: 1.6;
     }
 
+    /* ====== HEADER ====== */
     header {
-      background-color: #1a73e8;
-      color: #fff;
+      background: linear-gradient(135deg, #0d47a1 0%, #1a73e8 60%, #42a5f5 100%);
+      color: var(--blanco);
       text-align: center;
-      padding: 40px 20px;
+      padding: 48px 20px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -40px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: var(--dorado);
+      color: #1a1a1a;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 30px;
+      margin-bottom: 16px;
     }
 
     header h1 {
-      font-size: 2.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
       letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
       margin-bottom: 10px;
     }
 
-    header h2 {
+    header p.subtitulo {
       font-size: 1.1rem;
       font-weight: 400;
-      opacity: 0.9;
+      opacity: 0.92;
+      max-width: 560px;
+      margin: 0 auto 28px;
     }
 
+    .precio-boleto-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(4px);
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .precio-boleto-badge .precio {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--dorado);
+    }
+
+    /* ====== COUNTDOWN ====== */
+    .seccion-countdown {
+      background: var(--azul-oscuro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    .seccion-countdown h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 16px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .countdown-bloque {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 72px;
+    }
+
+    .countdown-bloque .numero {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 8px 16px;
+      min-width: 72px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .countdown-bloque .etiqueta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+      margin-top: 6px;
+    }
+
+    .countdown-separador {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+      padding-top: 10px;
+      opacity: 0.6;
+    }
+
+    /* ====== PROGRESS BAR ====== */
+    .seccion-progreso {
+      background: var(--blanco);
+      padding: 20px 20px 24px;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .progreso-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--texto-suave);
+      max-width: 700px;
+      margin: 0 auto 8px;
+    }
+
+    .progreso-labels strong {
+      color: var(--texto);
+    }
+
+    .barra-contenedor {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #e0e0e0;
+      border-radius: 30px;
+      height: 18px;
+      overflow: hidden;
+    }
+
+    .barra-relleno {
+      height: 100%;
+      background: linear-gradient(90deg, var(--verde) 0%, #66bb6a 100%);
+      border-radius: 30px;
+      transition: width 0.8s ease;
+      width: 0%;
+    }
+
+    .progreso-pie {
+      font-size: 0.82rem;
+      color: var(--texto-suave);
+      margin-top: 6px;
+    }
+
+    /* ====== MAIN ====== */
     main {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
     }
 
     section {
-      margin-bottom: 50px;
+      margin-bottom: 56px;
     }
 
-    section > h3 {
-      font-size: 1.4rem;
-      color: #1a73e8;
-      border-bottom: 2px solid #1a73e8;
-      padding-bottom: 8px;
-      margin-bottom: 24px;
-    }
-
-    /* Prize cards */
-    #premios {
+    .seccion-titulo {
       display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
     }
 
-    #premios > h3 {
-      width: 100%;
+    .seccion-titulo .icono {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .seccion-titulo h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--azul);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .seccion-titulo::after {
+      content: '';
+      flex: 1;
+      height: 3px;
+      background: linear-gradient(90deg, var(--azul) 0%, transparent 100%);
+      border-radius: 2px;
+    }
+
+    /* ====== PREMIOS ====== */
+    .grid-premios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
     }
 
     .tarjeta-premio {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      flex: 1 1 280px;
+      background: var(--blanco);
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tarjeta-premio:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.15);
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 16px;
+      left: -8px;
+      background: var(--rojo);
+      color: var(--blanco);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 5px 14px 5px 18px;
+      text-transform: uppercase;
+      clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+      z-index: 1;
+    }
+
+    .tarjeta-premio .imagen-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tarjeta-premio img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .tarjeta-premio:hover img {
+      transform: scale(1.04);
+    }
+
+    .tarjeta-premio .contenido {
+      padding: 20px 20px 24px;
+      flex: 1;
       display: flex;
       flex-direction: column;
     }
 
     .tarjeta-premio h3 {
-      background-color: #1a73e8;
-      color: #fff;
-      padding: 14px 16px;
-      font-size: 1rem;
-    }
-
-    .tarjeta-premio img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .tarjeta-premio .contenido {
-      padding: 16px;
-      flex: 1;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--texto);
+      margin-bottom: 10px;
     }
 
     .tarjeta-premio p {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 12px;
+      font-size: 0.93rem;
+      color: var(--texto-suave);
+      flex: 1;
+      margin-bottom: 16px;
     }
 
-    .tarjeta-premio .valor {
+    .valor-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff8e1;
+      border: 2px solid var(--dorado);
+      color: var(--dorado-oscuro);
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      color: #1a73e8;
+      font-size: 1.1rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      align-self: flex-start;
+    }
+
+    .valor-tag::before {
+      content: '🏆';
       font-size: 1rem;
-      margin-top: auto;
     }
 
-    /* How to participate */
-    #participar ol {
-      padding-left: 24px;
+    /* ====== CÓMO PARTICIPAR ====== */
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
     }
 
-    #participar ol li {
-      margin-bottom: 8px;
-      font-size: 0.97rem;
+    .paso {
+      background: var(--blanco);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
     }
 
-    /* Form */
-    #registro {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 32px;
+    .paso .numero-paso {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 30px;
+      background: var(--azul);
+      color: var(--blanco);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    #registro h3 {
-      font-size: 1.4rem;
-      color: #1a73e8;
-      border-bottom: 2px solid #1a73e8;
-      padding-bottom: 8px;
+    .paso .icono-paso {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      margin-top: 8px;
+    }
+
+    .paso h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--texto);
+      margin-bottom: 6px;
+    }
+
+    .paso p {
+      font-size: 0.87rem;
+      color: var(--texto-suave);
+    }
+
+    /* ====== BOLETOS ====== */
+    .boletos-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
       margin-bottom: 24px;
     }
 
-    .campo {
-      margin-bottom: 18px;
+    .boleto-stat {
+      background: var(--blanco);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 16px 24px;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      flex: 1 1 140px;
+      text-align: center;
+    }
+
+    .boleto-stat .stat-valor {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--azul);
+    }
+
+    .boleto-stat .stat-label {
+      font-size: 0.82rem;
+      color: var(--texto-suave);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .leyenda-boletos {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      font-size: 0.87rem;
+    }
+
+    .leyenda-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .leyenda-caja {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+    }
+
+    .leyenda-caja.disponible { background: #e3f2fd; border: 2px solid var(--azul); }
+    .leyenda-caja.seleccionado { background: var(--azul); }
+    .leyenda-caja.vendido { background: #e0e0e0; border: 2px solid #bdbdbd; }
+
+    .grid-boletos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
       gap: 6px;
+      max-height: 360px;
+      overflow-y: auto;
+      background: var(--blanco);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .boleto-num {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid var(--azul);
+      background: #e3f2fd;
+      color: var(--azul);
+      transition: background 0.15s, color 0.15s, transform 0.1s;
+      user-select: none;
+    }
+
+    .boleto-num:hover:not(.vendido) {
+      background: #90caf9;
+      transform: scale(1.06);
+    }
+
+    .boleto-num.seleccionado {
+      background: var(--azul);
+      color: var(--blanco);
+      border-color: var(--azul-oscuro);
+    }
+
+    .boleto-num.vendido {
+      background: #e0e0e0;
+      color: #9e9e9e;
+      border-color: #bdbdbd;
+      cursor: not-allowed;
+    }
+
+    .boletos-seleccionados-info {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      color: var(--texto);
+      min-height: 22px;
+    }
+
+    .boletos-seleccionados-info strong {
+      color: var(--azul);
+    }
+
+    /* ====== MÉTODOS DE PAGO ====== */
+    .metodos-pago {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .metodo {
+      background: var(--blanco);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 20px 24px;
+      flex: 1 1 180px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .metodo .metodo-icono {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .metodo h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .metodo p {
+      font-size: 0.84rem;
+      color: var(--texto-suave);
+    }
+
+    /* ====== FORMULARIO ====== */
+    .tarjeta-form {
+      background: var(--blanco);
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      padding: 36px;
+    }
+
+    .campo {
+      margin-bottom: 20px;
     }
 
     .campo label {
-      font-size: 0.9rem;
+      display: block;
+      font-size: 0.88rem;
       font-weight: 600;
       color: #444;
+      margin-bottom: 6px;
     }
 
     .campo input,
     .campo select {
-      padding: 10px 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
       font-size: 0.97rem;
       font-family: inherit;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fafafa;
     }
 
     .campo input:focus,
     .campo select:focus {
       outline: none;
-      border-color: #1a73e8;
+      border-color: var(--azul);
       box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+      background: var(--blanco);
     }
 
-    #registroRifa button[type="submit"] {
-      background-color: #1a73e8;
-      color: #fff;
+    .campo-readonly {
+      padding: 11px 14px;
+      background: #f0f4ff;
+      border: 1.5px solid #c5d8ff;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      color: var(--azul-oscuro);
+      font-weight: 600;
+      min-height: 44px;
+    }
+
+    .fila-campos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn-comprar {
+      width: 100%;
+      background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+      color: var(--blanco);
       border: none;
-      border-radius: 6px;
-      padding: 12px 32px;
+      border-radius: 10px;
+      padding: 16px 32px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      margin-top: 10px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-comprar:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-comprar:active {
+      transform: translateY(0);
+    }
+
+    /* ====== REGLAS ====== */
+    .lista-reglas {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lista-reglas li {
+      background: var(--blanco);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .lista-reglas li::before {
+      content: '✔';
+      color: var(--verde);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ====== SORTEO INFO ====== */
+    .sorteo-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .sorteo-info-card {
+      background: var(--blanco);
+      border-radius: 12px;
+      padding: 20px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .sorteo-info-card .si-icono {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .sorteo-info-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--texto-suave);
+      margin-bottom: 4px;
+    }
+
+    .sorteo-info-card p {
       font-size: 1rem;
       font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      margin-top: 8px;
+      color: var(--texto);
     }
 
-    #registroRifa button[type="submit"]:hover {
-      background-color: #1558c0;
-    }
-
+    /* ====== FOOTER ====== */
     footer {
-      background-color: #222;
+      background: #1a1a2e;
       color: #ccc;
       text-align: center;
-      padding: 24px 20px;
+      padding: 32px 20px;
       font-size: 0.9rem;
     }
 
+    footer .footer-marca {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--blanco);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
     footer a {
-      color: #80b3ff;
+      color: #90caf9;
       text-decoration: none;
     }
 
@@ -197,94 +747,397 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
 
-      .tarjeta-premio {
-        flex: 1 1 100%;
-      }
+    footer .footer-copy {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* ====== WHATSAPP FLOAT ====== */
+    .btn-whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #25d366;
+      color: var(--blanco);
+      border-radius: 50px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+      z-index: 999;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-whatsapp-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 26px rgba(37, 211, 102, 0.55);
+    }
+
+    .btn-whatsapp-float svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--blanco);
+      flex-shrink: 0;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 640px) {
+      header h1 { font-size: 1.8rem; }
+      .countdown-bloque .numero { font-size: 2rem; min-width: 56px; }
+      .fila-campos { grid-template-columns: 1fr; }
+      .tarjeta-form { padding: 24px 16px; }
+      .btn-whatsapp-float span { display: none; }
+      .btn-whatsapp-float { padding: 14px; border-radius: 50%; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ===== HEADER ===== -->
   <header>
+    <div class="header-badge">🎟️ Sorteo Oficial</div>
     <h1>GRAN RIFA GABAN STORE</h1>
-    <h2>¡Participa por la oportunidad de ganar un artículo exclusivo!</h2>
+    <p class="subtitulo">¡Participa y gana artículos exclusivos de moda! Solo quedan pocos boletos disponibles.</p>
+    <div class="precio-boleto-badge">
+      🎫 Boleto por solo <span class="precio">$5</span>
+    </div>
   </header>
+
+  <!-- ===== COUNTDOWN ===== -->
+  <div class="seccion-countdown">
+    <h2>⏳ El sorteo se realiza en</h2>
+    <div class="countdown">
+      <div class="countdown-bloque">
+        <div class="numero" id="cd-dias">00</div>
+        <div class="etiqueta">Días</div>
+      </div>
+      <div class="countdown-separador">:</div>
+      <div class="countdown-bloque">
+        <div class="numero" id="cd-horas">00</div>
+        <div class="etiqueta">Horas</div>
+      </div>
+      <div class="countdown-separador">:</div>
+      <div class="countdown-bloque">
+        <div class="numero" id="cd-minutos">00</div>
+        <div class="etiqueta">Minutos</div>
+      </div>
+      <div class="countdown-separador">:</div>
+      <div class="countdown-bloque">
+        <div class="numero" id="cd-segundos">00</div>
+        <div class="etiqueta">Segundos</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BARRA DE PROGRESO ===== -->
+  <div class="seccion-progreso">
+    <div class="progreso-labels">
+      <span>Boletos vendidos: <strong id="vendidos-num">0</strong></span>
+      <span>Total: <strong id="total-num">100</strong></span>
+    </div>
+    <div class="barra-contenedor">
+      <div class="barra-relleno" id="barra-progreso"></div>
+    </div>
+    <p class="progreso-pie" id="progreso-pie">¡Date prisa! Los boletos se agotan rápido.</p>
+  </div>
 
   <main>
 
+    <!-- ===== INFO DEL SORTEO ===== -->
+    <section id="info-sorteo">
+      <div class="seccion-titulo">
+        <span class="icono">📋</span>
+        <h2>Información del Sorteo</h2>
+      </div>
+      <div class="sorteo-info-grid">
+        <div class="sorteo-info-card">
+          <div class="si-icono">📅</div>
+          <div>
+            <h4>Fecha del Sorteo</h4>
+            <p id="fecha-sorteo-texto">Cargando...</p>
+          </div>
+        </div>
+        <div class="sorteo-info-card">
+          <div class="si-icono">🎟️</div>
+          <div>
+            <h4>Precio por Boleto</h4>
+            <p>$5.00 USD</p>
+          </div>
+        </div>
+        <div class="sorteo-info-card">
+          <div class="si-icono">🔢</div>
+          <div>
+            <h4>Total de Boletos</h4>
+            <p>100 boletos numerados</p>
+          </div>
+        </div>
+        <div class="sorteo-info-card">
+          <div class="si-icono">🏆</div>
+          <div>
+            <h4>Premios</h4>
+            <p>2 ganadores seleccionados</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PREMIOS ===== -->
     <section id="premios">
-      <h3>PREMIOS</h3>
+      <div class="seccion-titulo">
+        <span class="icono">🏆</span>
+        <h2>Premios</h2>
+      </div>
+      <div class="grid-premios">
 
-      <article class="tarjeta-premio">
-        <h3>PREMIO 1: Chubasquero para Niños</h3>
-        <img
-          src="https://placehold.co/600x400/FFD700/333333?text=Chubasquero+Amarillo"
-          alt="Chubasquero amarillo con patrón de nubes para niños"
-        />
-        <div class="contenido">
-          <p>Chubasquero ligero e impermeable para niños, de color amarillo brillante con un divertido patrón de nubes. Ideal para días de lluvia.</p>
-          <p class="valor">(Valor del premio: $120)</p>
-        </div>
-      </article>
+        <article class="tarjeta-premio">
+          <div class="ribbon">1er Premio</div>
+          <div class="imagen-wrapper">
+            <img
+              src="https://placehold.co/600x400/FFD700/333333?text=Chubasquero+Amarillo"
+              alt="Chubasquero amarillo con patrón de nubes para niños"
+            />
+          </div>
+          <div class="contenido">
+            <h3>Chubasquero para Niños</h3>
+            <p>Chubasquero ligero e impermeable de color amarillo brillante con un divertido patrón de nubes. Ideal para días de lluvia, mantiene a los pequeños secos y con estilo.</p>
+            <div class="valor-tag">Valor: $120</div>
+          </div>
+        </article>
 
-      <article class="tarjeta-premio">
-        <h3>PREMIO 2: Abrigo de Mezcla de Lana para Hombre</h3>
-        <img
-          src="https://placehold.co/600x400/4A4A4A/ffffff?text=Abrigo+Gris+Oscuro"
-          alt="Abrigo de lana gris oscuro de corte clásico para hombre"
-        />
-        <div class="contenido">
-          <p>Abrigo de lana de color gris oscuro, ideal para invierno, de corte clásico y elegante. Cómodo y abrigador.</p>
-          <p class="valor">(Valor del premio: $150)</p>
-        </div>
-      </article>
+        <article class="tarjeta-premio">
+          <div class="ribbon" style="background:#6a1b9a;">2do Premio</div>
+          <div class="imagen-wrapper">
+            <img
+              src="https://placehold.co/600x400/4A4A4A/ffffff?text=Abrigo+Gris+Oscuro"
+              alt="Abrigo de lana gris oscuro de corte clásico para hombre"
+            />
+          </div>
+          <div class="contenido">
+            <h3>Abrigo de Mezcla de Lana para Hombre</h3>
+            <p>Abrigo de lana de color gris oscuro, ideal para invierno. De corte clásico y elegante, perfecto para ocasiones formales o salidas del día a día.</p>
+            <div class="valor-tag">Valor: $150</div>
+          </div>
+        </article>
+
+      </div>
     </section>
 
+    <!-- ===== CÓMO PARTICIPAR ===== -->
     <section id="participar">
-      <h3>CÓMO PARTICIPAR</h3>
-      <ol>
-        <li>Costo por boleto: $5</li>
-        <li>Rellena el formulario con tus datos.</li>
-      </ol>
+      <div class="seccion-titulo">
+        <span class="icono">📌</span>
+        <h2>Cómo Participar</h2>
+      </div>
+      <div class="pasos">
+        <div class="paso">
+          <div class="numero-paso">1</div>
+          <div class="icono-paso">🔢</div>
+          <h4>Elige tu número</h4>
+          <p>Selecciona el boleto que más te guste en la cuadrícula de boletos disponibles.</p>
+        </div>
+        <div class="paso">
+          <div class="numero-paso">2</div>
+          <div class="icono-paso">📝</div>
+          <h4>Llena tus datos</h4>
+          <p>Completa el formulario con tu nombre, correo y número de teléfono.</p>
+        </div>
+        <div class="paso">
+          <div class="numero-paso">3</div>
+          <div class="icono-paso">💳</div>
+          <h4>Realiza el pago</h4>
+          <p>Paga $5 por boleto a través de cualquiera de nuestros métodos de pago.</p>
+        </div>
+        <div class="paso">
+          <div class="numero-paso">4</div>
+          <div class="icono-paso">📲</div>
+          <h4>Confirma por WhatsApp</h4>
+          <p>Envíanos tu comprobante por WhatsApp para reservar tu número oficial.</p>
+        </div>
+      </div>
     </section>
 
+    <!-- ===== BOLETOS ===== -->
+    <section id="boletos">
+      <div class="seccion-titulo">
+        <span class="icono">🎫</span>
+        <h2>Selecciona tus Boletos</h2>
+      </div>
+
+      <div class="boletos-info">
+        <div class="boleto-stat">
+          <div class="stat-valor" id="stat-disponibles">100</div>
+          <div class="stat-label">Disponibles</div>
+        </div>
+        <div class="boleto-stat">
+          <div class="stat-valor" id="stat-vendidos">0</div>
+          <div class="stat-label">Vendidos</div>
+        </div>
+        <div class="boleto-stat">
+          <div class="stat-valor" id="stat-seleccionados">0</div>
+          <div class="stat-label">Seleccionados</div>
+        </div>
+        <div class="boleto-stat">
+          <div class="stat-valor" id="stat-total">$0</div>
+          <div class="stat-label">Total a pagar</div>
+        </div>
+      </div>
+
+      <div class="leyenda-boletos">
+        <div class="leyenda-item"><div class="leyenda-caja disponible"></div> Disponible</div>
+        <div class="leyenda-item"><div class="leyenda-caja seleccionado"></div> Seleccionado</div>
+        <div class="leyenda-item"><div class="leyenda-caja vendido"></div> Vendido</div>
+      </div>
+
+      <div class="grid-boletos" id="grid-boletos">
+        <!-- Generado por JS -->
+      </div>
+      <div class="boletos-seleccionados-info" id="seleccionados-texto"></div>
+    </section>
+
+    <!-- ===== MÉTODOS DE PAGO ===== -->
+    <section id="pago">
+      <div class="seccion-titulo">
+        <span class="icono">💳</span>
+        <h2>Métodos de Pago</h2>
+      </div>
+      <div class="metodos-pago">
+        <div class="metodo">
+          <div class="metodo-icono">💸</div>
+          <div>
+            <h4>Zelle</h4>
+            <p>pagos@gabanstore.com</p>
+          </div>
+        </div>
+        <div class="metodo">
+          <div class="metodo-icono">📱</div>
+          <div>
+            <h4>PayPal</h4>
+            <p>@gabanstore</p>
+          </div>
+        </div>
+        <div class="metodo">
+          <div class="metodo-icono">💵</div>
+          <div>
+            <h4>Efectivo</h4>
+            <p>Coordinar entrega en persona</p>
+          </div>
+        </div>
+        <div class="metodo">
+          <div class="metodo-icono">💚</div>
+          <div>
+            <h4>WhatsApp Pay</h4>
+            <p>+1 800 GABAN</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FORMULARIO ===== -->
     <section id="registro">
-      <h3>Comprar Boletos</h3>
-      <form id="registroRifa">
-        <div class="campo">
-          <label for="nombre">Nombre Completo</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
-        </div>
-        <div class="campo">
-          <label for="correo">Correo Electrónico</label>
-          <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required />
-        </div>
-        <div class="campo">
-          <label for="telefono">Número de Teléfono</label>
-          <input type="tel" id="telefono" name="telefono" placeholder="+1 234 567 8900" required />
-        </div>
-        <div class="campo">
-          <label for="premio">Premio de tu preferencia</label>
-          <select id="premio" name="premio" required>
-            <option value="" disabled selected>Selecciona un premio</option>
-            <option value="chubasquero">Chubasquero</option>
-            <option value="abrigo">Abrigo</option>
-          </select>
-        </div>
-        <button type="submit">Comprar</button>
-      </form>
+      <div class="seccion-titulo">
+        <span class="icono">📝</span>
+        <h2>Reservar mis Boletos</h2>
+      </div>
+      <div class="tarjeta-form">
+        <form id="registroRifa">
+          <div class="fila-campos">
+            <div class="campo">
+              <label for="nombre">Nombre Completo *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="campo">
+              <label for="telefono">WhatsApp / Teléfono *</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+1 234 567 8900" required />
+            </div>
+          </div>
+          <div class="campo">
+            <label for="correo">Correo Electrónico *</label>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required />
+          </div>
+          <div class="campo">
+            <label>Boletos seleccionados</label>
+            <div class="campo-readonly" id="boletos-seleccionados-campo" role="status" aria-live="polite">Ninguno — elige tus números arriba</div>
+          </div>
+          <div class="campo">
+            <label for="metodo-pago">Método de pago preferido *</label>
+            <select id="metodo-pago" name="metodo-pago" required>
+              <option value="" disabled selected>Selecciona un método</option>
+              <option value="zelle">Zelle</option>
+              <option value="paypal">PayPal</option>
+              <option value="efectivo">Efectivo</option>
+              <option value="whatsapp-pay">WhatsApp Pay</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="notas">Notas adicionales (opcional)</label>
+            <input type="text" id="notas" name="notas" placeholder="Ej. quiero participar por el 1er premio" />
+          </div>
+          <button type="submit" class="btn-comprar">
+            🎟️ Confirmar Reserva
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== REGLAS ===== -->
+    <section id="reglas">
+      <div class="seccion-titulo">
+        <span class="icono">📜</span>
+        <h2>Bases y Condiciones</h2>
+      </div>
+      <ul class="lista-reglas">
+        <li>El sorteo se realizará de manera pública y en vivo a través de nuestras redes sociales.</li>
+        <li>Cada boleto tiene un costo de $5.00 USD. Puedes adquirir varios boletos para aumentar tus probabilidades.</li>
+        <li>El número ganador será seleccionado al azar usando un sistema certificado.</li>
+        <li>Para confirmar tu participación, debes enviar el comprobante de pago por WhatsApp dentro de las 24 horas siguientes a tu registro.</li>
+        <li>El premio no es transferible ni canjeable por dinero en efectivo.</li>
+        <li>Los ganadores serán notificados por correo electrónico y por WhatsApp.</li>
+        <li>Gaban Store se reserva el derecho de cancelar el sorteo si no se alcanza el mínimo de boletos vendidos.</li>
+      </ul>
     </section>
 
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
-    <p>Contacto: <a href="mailto:info@gabanstore.com">info@gabanstore.com</a> &nbsp;|&nbsp; Tel: +1 800 GABAN STORE</p>
+    <div class="footer-marca">GABAN STORE</div>
+    <p>Tu tienda de moda de confianza</p>
+    <div class="footer-links">
+      <a href="mailto:info@gabanstore.com">📧 info@gabanstore.com</a>
+      <a href="https://wa.me/18005422668">💬 WhatsApp</a>
+      <a href="#">📸 Instagram</a>
+      <a href="#">📘 Facebook</a>
+    </div>
+    <p class="footer-copy">© <span id="anio-actual"></span> Gaban Store. Todos los derechos reservados.</p>
   </footer>
+
+  <!-- ===== BOTÓN WHATSAPP FLOTANTE ===== -->
+  <a
+    href="https://wa.me/18005422668?text=Hola!%20Quiero%20participar%20en%20la%20Gran%20Rifa%20Gaban%20Store%20🎟️"
+    class="btn-whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp"
+  >
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 0C7.164 0 0 7.163 0 16c0 2.822.738 5.469 2.027 7.77L0 32l8.464-2.016A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0Zm8.273 22.605c-.344.967-1.703 1.77-2.793 2.004-.743.158-1.713.283-4.977-1.07-4.18-1.716-6.87-5.97-7.08-6.246-.2-.276-1.68-2.234-1.68-4.261 0-2.028 1.063-3.025 1.44-3.44.377-.414.82-.517 1.096-.517.275 0 .55.003.793.014.254.013.594-.097.93.71.343.826 1.163 2.855 1.266 3.06.103.206.172.447.034.723-.137.276-.206.448-.413.689-.207.241-.434.538-.618.723-.207.206-.42.428-.18.84.24.413 1.067 1.759 2.29 2.85 1.572 1.4 2.898 1.832 3.31 2.039.413.206.654.172.895-.103.241-.276 1.033-1.205 1.308-1.618.275-.413.55-.344.93-.206.378.137 2.407 1.136 2.82 1.342.412.206.687.31.79.48.103.172.103 1.004-.24 1.972Z"/>
+    </svg>
+    <span>¡Contáctanos!</span>
+  </a>
 
   <script src="script.js"></script>
 </body>
