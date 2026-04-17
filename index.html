@@ -1053,7 +1053,7 @@
         <h2>Reservar mis Boletos</h2>
       </div>
       <div class="tarjeta-form">
-        <form id="registroRifa" novalidate>
+        <form id="registroRifa">
           <div class="fila-campos">
             <div class="campo">
               <label for="nombre">Nombre Completo *</label>
@@ -1070,7 +1070,7 @@
           </div>
           <div class="campo">
             <label>Boletos seleccionados</label>
-            <div class="campo-readonly" id="boletos-seleccionados-campo">Ninguno — elige tus números arriba</div>
+            <div class="campo-readonly" id="boletos-seleccionados-campo" role="status" aria-live="polite">Ninguno — elige tus números arriba</div>
           </div>
           <div class="campo">
             <label for="metodo-pago">Método de pago preferido *</label>

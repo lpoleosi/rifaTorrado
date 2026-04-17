@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var minutos  = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
     var segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-    document.getElementById('cd-dias').textContent     = String(dias).padStart(2, '0');
-    document.getElementById('cd-horas').textContent    = String(horas).padStart(2, '0');
-    document.getElementById('cd-minutos').textContent  = String(minutos).padStart(2, '0');
+    document.getElementById('cd-dias').textContent = String(dias).padStart(2, '0');
+    document.getElementById('cd-horas').textContent = String(horas).padStart(2, '0');
+    document.getElementById('cd-minutos').textContent = String(minutos).padStart(2, '0');
     document.getElementById('cd-segundos').textContent = String(segundos).padStart(2, '0');
   }
 
@@ -137,11 +137,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var numsStr = nums.map(function (n) { return '#' + String(n).padStart(2, '0'); }).join(', ');
 
     if (elTexto) {
-      if (count === 0) {
-        elTexto.innerHTML = '';
-      } else {
-        elTexto.innerHTML = 'Has seleccionado <strong>' + count + '</strong> boleto(s): ' + numsStr +
-          ' \u2014 Total: <strong>$' + total + '</strong>';
+      elTexto.textContent = '';
+      if (count > 0) {
+        var parte1 = document.createElement('span');
+        parte1.textContent = 'Has seleccionado ';
+        var negrita1 = document.createElement('strong');
+        negrita1.textContent = count;
+        var parte2 = document.createElement('span');
+        parte2.textContent = ' boleto(s): ' + numsStr + ' \u2014 Total: ';
+        var negrita2 = document.createElement('strong');
+        negrita2.textContent = '$' + total;
+        elTexto.appendChild(parte1);
+        elTexto.appendChild(negrita1);
+        elTexto.appendChild(parte2);
+        elTexto.appendChild(negrita2);
       }
     }
 
